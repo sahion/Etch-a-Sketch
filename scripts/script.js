@@ -19,7 +19,30 @@ for (i=0;i<amount*amount;i++){
 }
 
 function changeColor(e){
-    this.style.cssText='background-color:black;';
+    switch (color){
+    case 'Black':
+        this.style.cssText='background-color:black;';
+        this.classList.remove('invisiblack');
+        break;
+
+    case 'Colored':
+        this.style.cssText='background-color: #'+Math.floor(Math.random()*16777215).toString(16)+';';
+        this.classList.remove('invisiblack');
+        break;
+
+    case 'Invisiblack':
+        if(Array.from(this.classList).indexOf('invisiblack')==-1){
+        this.classList.add('invisiblack');
+        this.style.opacity=0.1;
+        this.style.background="black";
+        } else {
+            console.log(this.style.opacity);
+             this.style.opacity =+this.style.opacity+0.1;
+             
+        }
+        
+        break;
+    }
 }
 
 
@@ -35,6 +58,7 @@ function clear(e){
 let boxes ;
 const container = document.querySelector('#container');
 let amount=20;
+let color='Black';
 
 
 
@@ -45,6 +69,10 @@ createBoard();
 
 
 const btnClear = document.querySelector('#clear');
+const btnsColor = document.querySelectorAll('.color');
 
 btnClear.addEventListener('click',clear);
+btnsColor.forEach(btn => btn.addEventListener('click',function(){
+    color=btn.textContent;
+}));
 boxes.forEach(box => box.addEventListener('mouseover', changeColor));
