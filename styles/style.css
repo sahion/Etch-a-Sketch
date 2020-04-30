@@ -1,7 +1,13 @@
 #container{
     border:1px solid black;
     display:grid;
+    height:500px;
+    width:500px;
+    margin:0 auto;  
+    
 }
 .box{
     
-}
+    background-color: aqua;
+    border:1px solid black;
+    }
