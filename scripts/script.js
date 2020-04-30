@@ -1,6 +1,7 @@
 
 
 function createBoard(){
+    let gridTemplateColumns='';
 for (i=0;i<amount;i++){
 gridTemplateColumns+='auto ';
 }
@@ -13,6 +14,8 @@ for (i=0;i<amount*amount;i++){
  
  container.appendChild(block);
 }
+ boxes = document.querySelectorAll('.box');
+ boxes.forEach(box => box.addEventListener('mouseover', changeColor));
 }
 
 function changeColor(e){
@@ -22,20 +25,25 @@ function changeColor(e){
 
 
 function clear(e){
-    boxes.forEach(box => box.style.background="aqua");
+    amount = prompt('How Much amount of grid?',16);
+    boxes.forEach(box => container.removeChild(box));
+    createBoard();
+    
+
 }
 
-
+let boxes ;
 const container = document.querySelector('#container');
-let amount=16;
-let gridTemplateColumns='';
+let amount=20;
+
 
 
 
 
 
 createBoard();
-const boxes = document.querySelectorAll('.box');
+
+
 const btnClear = document.querySelector('#clear');
 
 btnClear.addEventListener('click',clear);
